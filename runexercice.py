@@ -20,6 +20,7 @@ elif user_input == '2':
     print("enter your account number : ")
     user_account_number = input()
     existing_account = AccountExisting(user_name,user_account_number)
+    existing_account.validate_user()
     if existing_account.validate_user() == True:
         print("Acces verified")
         print("print : Please chose one option : ")
@@ -28,3 +29,4 @@ elif user_input == '2':
         print("3. display balance" )
     elif existing_account.validate_user() == False:
         print("Acces denied")
+    user_input = input()

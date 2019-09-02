@@ -57,9 +57,9 @@ class AccountExisting(Account):
 
     def validate_user(self):
         for value in Account.users_list:
-            print(value)
-            '''if self.account_number == value[0] and self.user_name == value[1]:
-                return True
-            elif self.account_number != value[0] and self.user_name != value[1]:
-                return False'''
-   
+            for elem in value:
+                if elem == self.user_name:
+                    print('Access granted : ', elem)
+                    return True
+                else:  return False
+            
