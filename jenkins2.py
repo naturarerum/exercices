@@ -17,7 +17,7 @@ def write_csv(row):
         filewriter.writerow(row)
 
 def create_dataframe():
-    columns = ['methodName' , 'ScenarioKey', 'browser','lang','status']
+    columns = ['finishTime','methodName' , 'ScenarioKey', 'browser','lang','status']
     df_row = read_row()
     #lst = range(50)
       #  np.array_split(lst, 5)
@@ -36,8 +36,11 @@ def read_row():
         replaced_quotes = data.replace('"',"")
         replaced_columns = replaced_quotes.replace(':',"")
         res = replaced_columns.split()
-        print("res :" + str(res))
+        #print("res :" + str(res))
     for i in range(len(res)):
+        if (len(row) < 6):
+            if (res[i] == "finishTime"):
+                row.append(res[i + 1])
             if (res[i] == "methodName"):
                 row.append(res[i + 1])
             if (res[i] == "classScenarioKey"):
@@ -48,8 +51,11 @@ def read_row():
                 row.append(res[i + 1])
             if (res[i] == "status"):
                 row.append(res[i + 1])
-    print(row)
-    return row
+        elif (len(row) <= 6): 
+            dataset.append(row)
+            row = []
+    print(dataset)
+    return dataset
 
     
 def main():
